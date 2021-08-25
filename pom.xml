@@ -88,7 +88,7 @@
                 <addClasspath>true</addClasspath>
                 <classpathPrefix>libs/</classpathPrefix>
                 <mainClass>
-                  com.oto.MainCLass <!--FIXME set main class -->
+                  kiu.oto.Main <!--FIXME set main class -->
                 </mainClass>
               </manifest>
             </archive>

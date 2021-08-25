@@ -1,10 +1,9 @@
-package kiu.oto.AffineTransformation.MainPackage;
+package kiu.oto.ferns;
 
-import kiu.oto.CommonPackage.MyFrame;
+import kiu.oto.common.MyFrame;
 
-import static kiu.oto.AffineTransformation.MainPackage.SettingsAndMethods.*;
-import static kiu.oto.AffineTransformation.MainPackage.Modifier.*;
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.inputDouble;
+import static kiu.oto.ferns.SettingsAndMethods.*;
+import static kiu.oto.common.CommonMethodsAndSettings.inputDouble;
 
 public class Run {
     public static void main(String[] args) {
@@ -14,7 +13,7 @@ public class Run {
     public static void run() {
         try {
             System.out.println("Input value of b1 (default value = " + B1_DEFAULT_VALUE + "):");
-            setB1(inputDouble());
+            Modifier.setB1(inputDouble());
         } catch (Exception e) {
             System.out.println("Using default value");
         }

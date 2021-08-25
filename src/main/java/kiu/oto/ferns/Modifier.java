@@ -1,12 +1,12 @@
-package kiu.oto.AffineTransformation.MainPackage;
+package kiu.oto.ferns;
 
-import kiu.oto.CommonPackage.AbstractModifier;
-import kiu.oto.CommonPackage.FloatPoint;
+import kiu.oto.common.AbstractModifier;
+import kiu.oto.common.FloatPoint;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static kiu.oto.AffineTransformation.MainPackage.SettingsAndMethods.B1_DEFAULT_VALUE;
+import static kiu.oto.ferns.SettingsAndMethods.B1_DEFAULT_VALUE;
 
 public class Modifier extends AbstractModifier {
     private static final List<Integer> odds = new ArrayList<>();

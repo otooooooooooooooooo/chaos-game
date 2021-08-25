@@ -1,6 +1,6 @@
-package kiu.oto.AffineTransformation.MainPackage;
+package kiu.oto.ferns;
 
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public enum SettingsAndMethods {;
 

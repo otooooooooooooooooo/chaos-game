@@ -1,8 +1,8 @@
-package kiu.oto.ChaosGameAdvanced.MainPackage;
+package kiu.oto.custom;
 
-import kiu.oto.CommonPackage.FloatPoint;
-import kiu.oto.CommonPackage.MyPanel;
-import kiu.oto.CommonPackage.Vertex;
+import kiu.oto.common.FloatPoint;
+import kiu.oto.common.MyPanel;
+import kiu.oto.common.Vertex;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,8 +15,7 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
-import static kiu.oto.ChaosGameAdvanced.MainPackage.SettingsAndMethods.*;
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public class Panel extends MyPanel implements MouseListener {
 
@@ -71,11 +70,11 @@ public class Panel extends MyPanel implements MouseListener {
 
     @Override
     protected void doRelevantAction(MouseEvent e) {
-        if(e.getButton() == CREATE_VERTEX) {
+        if(e.getButton() == SettingsAndMethods.CREATE_VERTEX) {
             minimize();
             ((Modifier) FloatPoint.getModifier()).createVertex(e);
         }
-        else if (e.getButton() == PAINT_CURRENT)
+        else if (e.getButton() == SettingsAndMethods.PAINT_CURRENT)
             setAndDrawCurrentUnscaled(e.getX(), e.getY());
     }
 

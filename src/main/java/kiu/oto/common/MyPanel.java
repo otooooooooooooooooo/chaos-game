@@ -1,4 +1,4 @@
-package kiu.oto.CommonPackage;
+package kiu.oto.common;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public abstract class MyPanel extends JPanel implements KeyListener {
     private MyFrame frame;

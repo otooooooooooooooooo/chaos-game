@@ -1,10 +1,9 @@
-package kiu.oto.ChaosGamePolygons.MainPackage;
+package kiu.oto.polygons;
 
-import kiu.oto.CommonPackage.MyFrame;
+import kiu.oto.common.MyFrame;
 
-import static kiu.oto.ChaosGamePolygons.MainPackage.SettingsAndMethods.*;
-import static kiu.oto.ChaosGamePolygons.MainPackage.Modifier.*;
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.inputInteger;
+import static kiu.oto.polygons.SettingsAndMethods.*;
+import static kiu.oto.common.CommonMethodsAndSettings.inputInteger;
 
 public class Run {
     public static void main(String[] args) {
@@ -18,7 +17,7 @@ public class Run {
             int input = inputInteger();
             if(input < 1)
                 throw new Exception();
-            setPolygonCornerCount(input);
+            Modifier.setPolygonCornerCount(input);
         } catch (Exception e) {
             System.out.println("Using default corner count: " + DEFAULT_POLYGON_CORNER_COUNT + '\n');
         }
@@ -31,9 +30,9 @@ public class Run {
             int input = inputInteger();
             if(input < 0 || input >= rules.size())
                 throw new Exception();
-            setRuleSet(input);
+            Modifier.setRuleSet(input);
         } catch (Exception e) {
-            System.out.println("Using default rule set: " + getRuleSet());
+            System.out.println("Using default rule set: " + Modifier.getRuleSet());
         }
 
 

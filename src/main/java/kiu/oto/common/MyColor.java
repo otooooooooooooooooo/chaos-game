@@ -1,4 +1,4 @@
-package kiu.oto.CommonPackage;
+package kiu.oto.common;
 
 public class MyColor {
     private final int RGB;

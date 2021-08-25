@@ -1,7 +1,7 @@
-package kiu.oto.ChaosGamePolygons.MainPackage;
+package kiu.oto.polygons;
 
 import java.util.ArrayList;
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public enum SettingsAndMethods {
     ;

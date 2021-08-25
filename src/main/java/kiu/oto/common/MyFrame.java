@@ -1,9 +1,9 @@
-package kiu.oto.CommonPackage;
+package kiu.oto.common;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 //Common frame for all projects.
 public class MyFrame extends JFrame {

@@ -1,6 +1,6 @@
-package kiu.oto.ChaosGameAdvanced.MainPackage;
+package kiu.oto.custom;
 
-import kiu.oto.CommonPackage.MyFrame;
+import kiu.oto.common.MyFrame;
 
 public class Run {
     public static void main(String[] args) {

@@ -1,13 +1,13 @@
-package kiu.oto.ChaosGamePolygons.MainPackage;
+package kiu.oto.polygons;
 
-import kiu.oto.CommonPackage.AbstractModifier;
-import kiu.oto.CommonPackage.FloatPoint;
-import kiu.oto.CommonPackage.Vertex;
+import kiu.oto.common.AbstractModifier;
+import kiu.oto.common.FloatPoint;
+import kiu.oto.common.Vertex;
 
 import java.util.ArrayList;
 
-import static kiu.oto.ChaosGamePolygons.MainPackage.SettingsAndMethods.*;
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
+import static kiu.oto.polygons.SettingsAndMethods.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public class Modifier extends AbstractModifier {
     private static int polygonCornerCount = DEFAULT_POLYGON_CORNER_COUNT;

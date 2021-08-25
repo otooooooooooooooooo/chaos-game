@@ -1,8 +1,8 @@
-package kiu.oto.ChaosGameAdvanced.MainPackage;
+package kiu.oto.custom;
 
-import kiu.oto.CommonPackage.AbstractModifier;
-import kiu.oto.CommonPackage.FloatPoint;
-import kiu.oto.CommonPackage.Vertex;
+import kiu.oto.common.AbstractModifier;
+import kiu.oto.common.FloatPoint;
+import kiu.oto.common.Vertex;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,9 +12,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
-import static kiu.oto.ChaosGameAdvanced.MainPackage.SettingsAndMethods.*;
-import kiu.oto.ChaosGameAdvanced.MainPackage.Panel;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public class Modifier extends AbstractModifier {
 
@@ -62,7 +60,7 @@ public class Modifier extends AbstractModifier {
                 double y = Double.parseDouble(parameters[1]) * heightRatio;
                 double compressionRatio = Double.parseDouble(parameters[2]);
                 double rotationDegree = Double.parseDouble(parameters[3]);
-                boolean clockwise = parseBoolean(parameters[4]);
+                boolean clockwise = SettingsAndMethods.parseBoolean(parameters[4]);
                 int color = Integer.parseInt(parameters[5]);
                 int quantity = Integer.parseInt(parameters[6]);
 

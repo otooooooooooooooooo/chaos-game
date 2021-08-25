@@ -1,6 +1,6 @@
-package kiu.oto.CommonPackage;
+package kiu.oto.common;
 
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.DOT_COLOR_1;
+import static kiu.oto.common.CommonMethodsAndSettings.DOT_COLOR_1;
 
 //point class which saves floating x and y coordinates to maintain precision
 

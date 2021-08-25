@@ -1,4 +1,4 @@
-package kiu.oto.CommonPackage;
+package kiu.oto.common;
 
 import java.util.Random;
 

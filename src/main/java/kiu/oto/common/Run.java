@@ -1,6 +1,6 @@
-package kiu.oto.CommonPackage;
+package kiu.oto.common;
 
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public class Run {
 
@@ -13,11 +13,11 @@ public class Run {
         setExportedImageResolution();
 
         if(program == 1)
-            kiu.oto.AffineTransformation.MainPackage.Run.run();
+            kiu.oto.ferns.Run.run();
         if(program == 2)
-            kiu.oto.ChaosGamePolygons.MainPackage.Run.run();
+            kiu.oto.polygons.Run.run();
         if(program == 3)
-            kiu.oto.ChaosGameAdvanced.MainPackage.Run.run();
+            kiu.oto.custom.Run.run();
     }
 
     private static int getProgramChoice() {

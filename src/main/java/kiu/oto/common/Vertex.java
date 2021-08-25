@@ -1,8 +1,8 @@
-package kiu.oto.CommonPackage;
+package kiu.oto.common;
 
 import java.util.ArrayList;
 
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public class Vertex extends FloatPoint {
     //will need these numbers often

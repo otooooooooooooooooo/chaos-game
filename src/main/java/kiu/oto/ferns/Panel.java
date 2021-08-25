@@ -1,16 +1,14 @@
-package kiu.oto.AffineTransformation.MainPackage;
+package kiu.oto.ferns;
 
-import kiu.oto.CommonPackage.AbstractModifier;
-import kiu.oto.CommonPackage.FloatPoint;
-import kiu.oto.CommonPackage.MyPanel;
+import kiu.oto.common.FloatPoint;
+import kiu.oto.common.MyPanel;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import static kiu.oto.AffineTransformation.MainPackage.SettingsAndMethods.*;
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
-import static kiu.oto.AffineTransformation.MainPackage.Modifier.*;
-import static kiu.oto.CommonPackage.FloatPoint.*;
+import static kiu.oto.ferns.SettingsAndMethods.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
+import static kiu.oto.common.FloatPoint.*;
 
 
 //this class contains all attributes necessary to transform the current point

@@ -1,13 +1,13 @@
-package kiu.oto.ChaosGamePolygons.MainPackage;
+package kiu.oto.polygons;
 
-import kiu.oto.CommonPackage.FloatPoint;
-import kiu.oto.CommonPackage.MyPanel;
+import kiu.oto.common.FloatPoint;
+import kiu.oto.common.MyPanel;
 
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import static kiu.oto.CommonPackage.CommonMethodsAndSettings.*;
+import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public class Panel extends MyPanel {
     public Panel() {

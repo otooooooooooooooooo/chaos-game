@@ -1,4 +1,4 @@
-package kiu.oto.ChaosGameAdvanced.MainPackage;
+package kiu.oto.custom;
 
 import java.awt.event.MouseEvent;
 

@@ -1,13 +1,13 @@
 package kiu.oto.custom;
 
-import kiu.oto.common.MyFrame;
+import kiu.oto.common.CommonFrame;
 
-public class Run {
+public class CustomRun {
     public static void main(String[] args) {
         run();
     }
 
     public static void run() {
-        new MyFrame(new Panel());
+        new CommonFrame(new CustomPanel());
     }
 }

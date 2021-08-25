@@ -6,9 +6,9 @@ import kiu.oto.common.FloatPoint;
 import java.util.ArrayList;
 import java.util.List;
 
-import static kiu.oto.ferns.SettingsAndMethods.B1_DEFAULT_VALUE;
+import static kiu.oto.ferns.FernsSettingsAndMethods.B1_DEFAULT_VALUE;
 
-public class Modifier extends AbstractModifier {
+public class FernsModifier extends AbstractModifier {
     private static final List<Integer> odds = new ArrayList<>();
     private static final int prob0 = 1;
     private static final int prob1 = 85;

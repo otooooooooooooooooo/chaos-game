@@ -1,11 +1,11 @@
 package kiu.oto.ferns;
 
-import kiu.oto.common.MyFrame;
+import kiu.oto.common.CommonFrame;
 
-import static kiu.oto.ferns.SettingsAndMethods.*;
+import static kiu.oto.ferns.FernsSettingsAndMethods.*;
 import static kiu.oto.common.CommonMethodsAndSettings.inputDouble;
 
-public class Run {
+public class FernsRun {
     public static void main(String[] args) {
         run();
     }
@@ -13,11 +13,11 @@ public class Run {
     public static void run() {
         try {
             System.out.println("Input value of b1 (default value = " + B1_DEFAULT_VALUE + "):");
-            Modifier.setB1(inputDouble());
+            FernsModifier.setB1(inputDouble());
         } catch (Exception e) {
             System.out.println("Using default value");
         }
 
-        new MyFrame(new Panel());
+        new CommonFrame(new FernsPanel());
     }
 }

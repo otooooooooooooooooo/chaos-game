@@ -13,15 +13,15 @@ import java.nio.file.Paths;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
-public abstract class MyPanel extends JPanel implements KeyListener {
-    private MyFrame frame;
+public abstract class CommonPanel extends JPanel implements KeyListener {
+    private CommonFrame frame;
     private final MyLabel label = new MyLabel();
 
     //iterable point which makes image
     protected FloatPoint current;
 
 
-    public MyPanel() {
+    public CommonPanel() {
         setSize(PANEL_WIDTH, PANEL_HEIGHT);
         setBounds(0, 0, getWidth(), getHeight());
         setLayout(null);
@@ -99,7 +99,7 @@ public abstract class MyPanel extends JPanel implements KeyListener {
         label.paint(x, y, color);
     }
 
-    public void setFrame(MyFrame frame) {
+    public void setFrame(CommonFrame frame) {
         this.frame = frame;
         updateImage();
     }
@@ -146,7 +146,7 @@ public abstract class MyPanel extends JPanel implements KeyListener {
 
     private void restartProgram() {
         frame.dispose();
-        Run.startProgram();
+        CommonRun.startProgram();
     }
 
     protected abstract void doRelevantAction(MouseEvent e);

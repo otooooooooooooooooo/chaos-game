@@ -2,7 +2,7 @@ package kiu.oto.ferns;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
-public enum SettingsAndMethods {;
+public enum FernsSettingsAndMethods {;
 
     public static final double B1_DEFAULT_VALUE = 0.04;
     //parameters of default fern found on wikipedia

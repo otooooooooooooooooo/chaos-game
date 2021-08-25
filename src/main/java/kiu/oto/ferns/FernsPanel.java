@@ -1,27 +1,27 @@
 package kiu.oto.ferns;
 
 import kiu.oto.common.FloatPoint;
-import kiu.oto.common.MyPanel;
+import kiu.oto.common.CommonPanel;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import static kiu.oto.ferns.SettingsAndMethods.*;
+import static kiu.oto.ferns.FernsSettingsAndMethods.*;
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 import static kiu.oto.common.FloatPoint.*;
 
 
 //this class contains all attributes necessary to transform the current point
 
-public class Panel extends MyPanel {
+public class FernsPanel extends CommonPanel {
 
-    public Panel() {
+    public FernsPanel() {
         setAndDrawCurrent(0.0, 0.0);
     }
 
     @Override
     protected void setModifier() {
-        setPointModifier(new Modifier());
+        setPointModifier(new FernsModifier());
     }
 
     @Override

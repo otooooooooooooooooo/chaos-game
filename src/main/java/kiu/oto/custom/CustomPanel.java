@@ -1,7 +1,7 @@
 package kiu.oto.custom;
 
 import kiu.oto.common.FloatPoint;
-import kiu.oto.common.MyPanel;
+import kiu.oto.common.CommonPanel;
 import kiu.oto.common.Vertex;
 
 import javax.imageio.ImageIO;
@@ -17,17 +17,17 @@ import java.util.Set;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
-public class Panel extends MyPanel implements MouseListener {
+public class CustomPanel extends CommonPanel implements MouseListener {
 
-    public Panel() {
+    public CustomPanel() {
         addMouseListener(this);
     }
 
     @Override
     protected void setModifier() {
-        Modifier modifier = new Modifier(this);
-        FloatPoint.setPointModifier(modifier);
-        modifier.getVertices().forEach(this::paint);
+        CustomModifier customModifier = new CustomModifier(this);
+        FloatPoint.setPointModifier(customModifier);
+        customModifier.getVertices().forEach(this::paint);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Panel extends MyPanel implements MouseListener {
         String projectName = getProjectNameInput();
         StringBuilder data = new StringBuilder();
         data.append(EXPORTED_IMAGE_WIDTH).append("|").append(EXPORTED_IMAGE_HEIGHT).append('\n');
-        Set<Vertex> vertices = new HashSet<>(((Modifier) FloatPoint.getModifier()).getVertices());
+        Set<Vertex> vertices = new HashSet<>(((CustomModifier) FloatPoint.getModifier()).getVertices());
         vertices.forEach(x -> data.append(x.toString()));
 
         try {
@@ -70,11 +70,11 @@ public class Panel extends MyPanel implements MouseListener {
 
     @Override
     protected void doRelevantAction(MouseEvent e) {
-        if(e.getButton() == SettingsAndMethods.CREATE_VERTEX) {
+        if(e.getButton() == CustomSettingsAndMethods.CREATE_VERTEX) {
             minimize();
-            ((Modifier) FloatPoint.getModifier()).createVertex(e);
+            ((CustomModifier) FloatPoint.getModifier()).createVertex(e);
         }
-        else if (e.getButton() == SettingsAndMethods.PAINT_CURRENT)
+        else if (e.getButton() == CustomSettingsAndMethods.PAINT_CURRENT)
             setAndDrawCurrentUnscaled(e.getX(), e.getY());
     }
 

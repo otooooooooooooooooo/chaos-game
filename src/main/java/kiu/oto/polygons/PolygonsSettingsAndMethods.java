@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
-public enum SettingsAndMethods {
+public enum PolygonsSettingsAndMethods {
     ;
     public static final int DEFAULT_POLYGON_CORNER_COUNT = 4;
 
@@ -38,7 +38,7 @@ class Rule {
     public Rule(int rule_number, String rule_definition) {
         this.ruleNumber = rule_number;
         this.ruleDefinition = rule_definition;
-        SettingsAndMethods.rules.add(this);
+        PolygonsSettingsAndMethods.rules.add(this);
     }
 
     public String toString() {

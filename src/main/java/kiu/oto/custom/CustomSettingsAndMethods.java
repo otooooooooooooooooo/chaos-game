@@ -2,7 +2,7 @@ package kiu.oto.custom;
 
 import java.awt.event.MouseEvent;
 
-public enum SettingsAndMethods {;
+public enum CustomSettingsAndMethods {;
 
 //mouse controls
     public static final int CREATE_VERTEX = MouseEvent.BUTTON3;

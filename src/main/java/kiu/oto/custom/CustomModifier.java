@@ -15,14 +15,14 @@ import java.util.List;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 @AllArgsConstructor
-public class Modifier extends AbstractModifier {
+public class CustomModifier extends AbstractModifier {
 
     private static final int TEMPLATE_MODE_IMPORT = 1;
     private static final int TEMPLATE_MODE_MANUAL = 2;
 
     private static final ArrayList<Vertex> vertices = new ArrayList<>();
 
-    private final Panel panel;
+    private final CustomPanel customPanel;
 
     @Override
     public void prepareSetup() {
@@ -58,7 +58,7 @@ public class Modifier extends AbstractModifier {
                 double y = Double.parseDouble(parameters[1]) * heightRatio;
                 double compressionRatio = Double.parseDouble(parameters[2]);
                 double rotationDegree = Double.parseDouble(parameters[3]);
-                boolean clockwise = SettingsAndMethods.parseBoolean(parameters[4]);
+                boolean clockwise = CustomSettingsAndMethods.parseBoolean(parameters[4]);
                 int color = Integer.parseInt(parameters[5]);
                 int quantity = Integer.parseInt(parameters[6]);
 
@@ -120,7 +120,7 @@ public class Modifier extends AbstractModifier {
 
         addVertex(createdVertex);
 
-        panel.drawVertex(createdVertex);
+        customPanel.drawVertex(createdVertex);
 
         System.out.println("Vertex created.");
 

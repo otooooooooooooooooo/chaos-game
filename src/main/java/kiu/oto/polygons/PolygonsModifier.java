@@ -8,10 +8,10 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 
-import static kiu.oto.polygons.SettingsAndMethods.*;
+import static kiu.oto.polygons.PolygonsSettingsAndMethods.*;
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
-public class Modifier extends AbstractModifier {
+public class PolygonsModifier extends AbstractModifier {
     @Setter
     private static int polygonCornerCount = DEFAULT_POLYGON_CORNER_COUNT;
 

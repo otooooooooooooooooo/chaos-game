@@ -6,8 +6,8 @@ import java.awt.*;
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 //Common frame for all projects.
-public class MyFrame extends JFrame {
-    public MyFrame(MyPanel panel) {
+public class CommonFrame extends JFrame {
+    public CommonFrame(CommonPanel panel) {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -26,8 +26,8 @@ public class MyFrame extends JFrame {
 
     @Override
     public Component add(Component component) {
-        if(component instanceof MyPanel)
-            ((MyPanel) component).setFrame(this);
+        if(component instanceof CommonPanel)
+            ((CommonPanel) component).setFrame(this);
         return super.add(component);
     }
 }

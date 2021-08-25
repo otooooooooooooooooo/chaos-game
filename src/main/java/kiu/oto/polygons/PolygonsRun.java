@@ -1,11 +1,11 @@
 package kiu.oto.polygons;
 
-import kiu.oto.common.MyFrame;
+import kiu.oto.common.CommonFrame;
 
-import static kiu.oto.polygons.SettingsAndMethods.*;
+import static kiu.oto.polygons.PolygonsSettingsAndMethods.*;
 import static kiu.oto.common.CommonMethodsAndSettings.inputInteger;
 
-public class Run {
+public class PolygonsRun {
     public static void main(String[] args) {
          run();
     }
@@ -17,7 +17,7 @@ public class Run {
             int input = inputInteger();
             if(input < 1)
                 throw new Exception();
-            Modifier.setPolygonCornerCount(input);
+            PolygonsModifier.setPolygonCornerCount(input);
         } catch (Exception e) {
             System.out.println("Using default corner count: " + DEFAULT_POLYGON_CORNER_COUNT + '\n');
         }
@@ -30,12 +30,12 @@ public class Run {
             int input = inputInteger();
             if(input < 0 || input >= rules.size())
                 throw new Exception();
-            Modifier.setRuleSet(input);
+            PolygonsModifier.setRuleSet(input);
         } catch (Exception e) {
-            System.out.println("Using default rule set: " + Modifier.getRuleSet());
+            System.out.println("Using default rule set: " + PolygonsModifier.getRuleSet());
         }
 
 
-        new MyFrame(new Panel());
+        new CommonFrame(new PolygonsPanel());
     }
 }

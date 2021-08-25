@@ -1,8 +1,12 @@
 package kiu.oto.common;
 
+import kiu.oto.custom.CustomRun;
+import kiu.oto.ferns.FernsRun;
+import kiu.oto.polygons.PolygonsRun;
+
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
-public class Run {
+public class CommonRun {
 
     public static void startProgram() {
         int program = getProgramChoice();
@@ -13,11 +17,11 @@ public class Run {
         setExportedImageResolution();
 
         if(program == 1)
-            kiu.oto.ferns.Run.run();
+            FernsRun.run();
         if(program == 2)
-            kiu.oto.polygons.Run.run();
+            PolygonsRun.run();
         if(program == 3)
-            kiu.oto.custom.Run.run();
+            CustomRun.run();
     }
 
     private static int getProgramChoice() {

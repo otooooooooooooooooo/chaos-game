@@ -3,6 +3,8 @@ package kiu.oto.polygons;
 import kiu.oto.common.AbstractModifier;
 import kiu.oto.common.FloatPoint;
 import kiu.oto.common.Vertex;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 
@@ -10,6 +12,7 @@ import static kiu.oto.polygons.SettingsAndMethods.*;
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public class Modifier extends AbstractModifier {
+    @Setter
     private static int polygonCornerCount = DEFAULT_POLYGON_CORNER_COUNT;
 
     //previously chosen corners
@@ -18,20 +21,10 @@ public class Modifier extends AbstractModifier {
     Vertex previousX3 = null;
 
     //defines which rule set the modifier follows
+    @Getter
+    @Setter
     private static int ruleSet = NO_RULE.getRuleNumber();
     private static final ArrayList<Vertex> corners = new ArrayList<>();
-
-    public static int getRuleSet() {
-        return ruleSet;
-    }
-
-    public static void setRuleSet(int ruleNumber) {
-        ruleSet = ruleNumber;
-    }
-
-    public static void setPolygonCornerCount(int polygonCornerCount) {
-        Modifier.polygonCornerCount = polygonCornerCount;
-    }
 
     private Vertex chooseCorner() {
         Vertex next = getRandomCorner();

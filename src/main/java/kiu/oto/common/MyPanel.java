@@ -119,20 +119,21 @@ public abstract class MyPanel extends JPanel implements KeyListener {
 
     }
 
-    protected  void doRelevantAction(KeyEvent e) {//TODO switch
-        if(e.getKeyCode() == PAINT_NEXT)
-            paintNextPoint(1);
-        else if (e.getKeyCode() == PAINT_BIG_STEP)
-            paintNextPoint(AMOUNT_PER_BIG_STEP);
-        else if (e.getKeyCode() == PAINT_FULL_IMAGE)
-            paintNextPoint(AMOUNT_TO_DRAW_FULL_IMAGE);
-        else if (e.getKeyCode() == EXPORT_IMAGE)
-            export();
-        else if (e.getKeyCode() == MINIMIZE_WINDOW)
-            minimize();
-        else if (e.getKeyCode() == RESTART_PROGRAM) {
-            restartProgram();
-        }
+    protected  void doRelevantAction(KeyEvent e) {//TODO test
+        switch (e.getKeyCode()) {
+            case PAINT_NEXT ->
+                    paintNextPoint(1);
+            case PAINT_BIG_STEP ->
+                    paintNextPoint(AMOUNT_PER_BIG_STEP);
+            case PAINT_FULL_IMAGE ->
+                    paintNextPoint(AMOUNT_TO_DRAW_FULL_IMAGE);
+            case EXPORT_IMAGE ->
+                    export();
+            case MINIMIZE_WINDOW ->
+                    minimize();
+            case RESTART_PROGRAM ->
+                    restartProgram();
+        };
     }
 
     protected String getProjectNameInput() {

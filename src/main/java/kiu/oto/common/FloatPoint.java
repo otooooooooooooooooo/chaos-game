@@ -1,42 +1,35 @@
 package kiu.oto.common;
 
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import static kiu.oto.common.CommonMethodsAndSettings.DOT_COLOR_1;
 
 //point class which saves floating x and y coordinates to maintain precision
 
+
+@RequiredArgsConstructor
 public class FloatPoint {
-    private double x;
-    private double y;
+    @Getter
+    @Setter
+    @NonNull
+    private Double x;
+    @Getter
+    @Setter
+    @NonNull
+    private Double y;
+    @Getter
+    @Setter
     protected int color = DOT_COLOR_1;
+
+    @Getter
     private static AbstractModifier modifier;
 
     public FloatPoint(double x, double y) {
         this.x = x;
         this.y = y;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
     }
 
     public void modify() {
@@ -46,6 +39,4 @@ public class FloatPoint {
     public static void setPointModifier(AbstractModifier pointModifier) {
         modifier = pointModifier;
     }
-
-    public static AbstractModifier getModifier() { return modifier; }
 }

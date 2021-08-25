@@ -1,5 +1,7 @@
 package kiu.oto.common;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
@@ -11,6 +13,7 @@ public class Vertex extends FloatPoint {
     private final double degree;
     private final boolean clockwise;
     private final double compressionRatio;
+    @Getter
     private final int quantity;
     private double sine;
     private double cosine;
@@ -51,9 +54,6 @@ public class Vertex extends FloatPoint {
         setSineCosine();
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
     private void setSineCosine() {
         sine = Math.sin(Math.toRadians(degree / 2.0));

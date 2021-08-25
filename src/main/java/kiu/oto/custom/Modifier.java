@@ -3,6 +3,7 @@ package kiu.oto.custom;
 import kiu.oto.common.AbstractModifier;
 import kiu.oto.common.FloatPoint;
 import kiu.oto.common.Vertex;
+import lombok.AllArgsConstructor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,18 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
-
+@AllArgsConstructor
 public class Modifier extends AbstractModifier {
 
     private static final int TEMPLATE_MODE_IMPORT = 1;
     private static final int TEMPLATE_MODE_MANUAL = 2;
 
     private static final ArrayList<Vertex> vertices = new ArrayList<>();
-    private final Panel panel;
 
-    public Modifier(Panel panel) {
-        this.panel = panel;
-    }
+    private final Panel panel;
 
     @Override
     public void prepareSetup() {

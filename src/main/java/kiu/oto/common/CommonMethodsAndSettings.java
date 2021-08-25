@@ -6,6 +6,9 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Random;
+
+//TODO pull settings from outer sources
 
 /*
 enum for methods and settings that will be used in all packages of this project
@@ -38,6 +41,9 @@ private static final Dimension SCREEN_DIMENSION = Toolkit.getDefaultToolkit().ge
     //all colors in project are saved as rgb values
     public static int BACKGROUND_COLOR = Color.black.getRGB();
     public static final int DOT_COLOR_1 = Color.cyan.getRGB();
+
+    //random
+    public static final Random RANDOM= new Random();
 
 
 //performance settings

@@ -1,13 +1,11 @@
 package kiu.oto.common;
 
-public class MyColor {
-    private final int RGB;
-    private final String name;
+import lombok.AllArgsConstructor;
 
-    public MyColor(String name, int RGB) {
-        this.name = name;
-        this.RGB = RGB;
-    }
+@AllArgsConstructor
+public class MyColor {
+    private final String name;
+    private final int RGB;
 
     public String toString() {
         return name + " - " + RGB;

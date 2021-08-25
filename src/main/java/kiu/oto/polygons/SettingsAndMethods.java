@@ -1,5 +1,7 @@
 package kiu.oto.polygons;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
@@ -25,24 +27,21 @@ public enum SettingsAndMethods {
     public static final double GAP_FROM_BORDER_TO_CORNER = EXPORTED_IMAGE_HEIGHT / 100.0;
 }
 class Rule {
-    public int getRuleNumber() {
-        return RULE_NUMBER;
-    }
 
 //    public String getRuleDefinition() {
 //        return RULE_DEFINITION;
 //    }
-
-    private final int RULE_NUMBER;
-    private final String RULE_DEFINITION;
+    @Getter
+    public final int ruleNumber;
+    private final String ruleDefinition;
 
     public Rule(int rule_number, String rule_definition) {
-        RULE_NUMBER = rule_number;
-        RULE_DEFINITION = rule_definition;
+        this.ruleNumber = rule_number;
+        this.ruleDefinition = rule_definition;
         SettingsAndMethods.rules.add(this);
     }
 
     public String toString() {
-        return RULE_NUMBER + ". " + RULE_DEFINITION + '\n';
+        return ruleNumber + ". " + ruleDefinition + '\n';
     }
 }

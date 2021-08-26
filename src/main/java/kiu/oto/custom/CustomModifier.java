@@ -71,7 +71,7 @@ public class CustomModifier extends AbstractModifier {
     }
 
     private int getUserChoice() {
-        System.out.println(
+        output(
                 "Input " + TEMPLATE_MODE_IMPORT +
                 " to import template. " +
                 "Input " + TEMPLATE_MODE_MANUAL +

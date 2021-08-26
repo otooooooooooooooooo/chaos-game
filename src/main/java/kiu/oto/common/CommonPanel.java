@@ -37,11 +37,12 @@ public abstract class CommonPanel extends JPanel implements KeyListener {
         setLayout(null);
         addKeyListener(this);
         add(label);
-        setModifier();
         getInputParameters();
+        setModifier();
         frame.setProgramPanel(this);
         updateImage();
         setFocusable(true);
+
     }
 
     /**

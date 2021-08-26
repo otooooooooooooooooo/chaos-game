@@ -1,5 +1,8 @@
 package kiu.oto.common;
 
+
+import kiu.oto.common.inputs.ProgramChoice;
+
 import kiu.oto.custom.CustomPanel;
 
 import kiu.oto.ferns.FernsPanel;
@@ -7,37 +10,32 @@ import kiu.oto.ferns.FernsPanel;
 import kiu.oto.polygons.PolygonsPanel;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
+import static kiu.oto.common.inputs.ProgramChoice.*;
 
 public class CommonRun {
 
-    public static final CommonFrame frame = new CommonFrame();
+    public static CommonFrame frame;
 
     public static void startProgram() {
-        int program = getProgramChoice();
+        ProgramChoice program = getProgramChoice();
 
         output("Choose background: ");
         BACKGROUND_COLOR = inputColor();
 
         setExportedImageResolution();
 
-        if(program == 1)
-            new FernsPanel();
-        if(program == 2)
-            new PolygonsPanel();
-        if(program == 3)
-            new CustomPanel();
+        frame = new CommonFrame();
+
+        switch (program) {
+            case CUSTOM -> new CustomPanel();
+            case POLYGONS -> new PolygonsPanel();
+            case FERNS -> new FernsPanel();
+        }
     }
 
-    private static int getProgramChoice() {
-        output("Choose simulation program:\n" +
-                "1: Affine Transformation\n" +
-                "2: Chaos Game Polygons\n" +
-                "3: Chaos Game Advanced");
-        int program;
-        do {
-            program = inputInteger();
-        } while (program != 1 && program != 2 && program != 3);
-        return program;
+    private static ProgramChoice getProgramChoice() {
+    //    ProgramChoiceInput pri = new ProgramChoiceInput();
+        return POLYGONS;
     }
 
     private static void setExportedImageResolution() {

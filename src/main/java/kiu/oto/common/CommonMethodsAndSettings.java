@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Random;
 
-//TODO pull settings from outer sources
+//TODO pull settings from outer sources, some fields can be private
 
 /**
  * enum for methods and settings that will be used in all packages of this project
@@ -45,8 +45,16 @@ public enum CommonMethodsAndSettings {;
     public static final int FRAME_WIDTH = PANEL_WIDTH + 14;
     public static final int FRAME_HEIGHT = PANEL_HEIGHT + 37;
 
-    //TODO fix
-    public static final Dimension POPUP_LABEL_DIMENSION = new Dimension(PANEL_WIDTH /3, PANEL_HEIGHT/3);
+
+    public static final int POPUP_PANEL_DIMENSION_DOWNSCALE = 2;
+
+
+    public static final Dimension POPUP_PANEL_DIMENSION =
+            new Dimension(PANEL_WIDTH / POPUP_PANEL_DIMENSION_DOWNSCALE,
+                        PANEL_HEIGHT / POPUP_PANEL_DIMENSION_DOWNSCALE);
+    public static final Dimension POPUP_FRAME_DIMENSION =
+            new Dimension(POPUP_PANEL_DIMENSION.width + 14,
+                    POPUP_PANEL_DIMENSION.height + 37);
 
     //TODO this is bs needs refactor
     //all colors in project are saved as rgb values

@@ -25,6 +25,17 @@ public class FernsPanel extends CommonPanel {
     }
 
     @Override
+    protected void getInputParameters() {
+        try {
+            System.out.println("Input value of b1 (default value = " + B1_DEFAULT_VALUE + "):");
+            FernsModifier.setB1(inputDouble());
+        } catch (Exception e) {
+            System.out.println("Using default value");
+        }
+
+    }
+
+    @Override
     protected Point getUsablePoint(FloatPoint p) {
         //actual bounds of fern are -2.18 <= x <= 2.7 && 0 <= y <= 9.9, and its rotated
         double x = (p.getX() + FERN_DEVIATION_TO_NEGATIVE_X) * PANEL_FERN_WIDTH_RATIO;

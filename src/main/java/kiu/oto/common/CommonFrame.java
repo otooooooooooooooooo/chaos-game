@@ -1,13 +1,18 @@
 package kiu.oto.common;
 
 import javax.swing.*;
-import java.awt.*;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
-//Common frame for all projects.
+/**
+ * Common JFrame (Window) for all sub-programs
+ */
 public class CommonFrame extends JFrame {
-    public CommonFrame(CommonPanel panel) {
+
+
+    private CommonPanel programPanel;
+
+    public CommonFrame() {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -15,19 +20,25 @@ public class CommonFrame extends JFrame {
         setUndecorated(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-        add(panel);
-        panel.updateImage();
         setVisible(true);
+        setFocusable(false);
     }
 
+    /**
+     *
+     * @param programPanel according panel to certain program
+     */
+    public void setProgramPanel(CommonPanel programPanel) {
+        add(programPanel);
+        this.programPanel = programPanel;
+    }
+
+
+    /**
+     * Minimizes the program window
+     */
     public void minimize() {
         setState(JFrame.ICONIFIED);
     }
 
-    @Override
-    public Component add(Component component) {
-        if(component instanceof CommonPanel)
-            ((CommonPanel) component).setFrame(this);
-        return super.add(component);
-    }
 }

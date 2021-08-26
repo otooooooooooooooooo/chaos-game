@@ -81,15 +81,15 @@ public class Vertex extends FloatPoint {
         if (degree == 0)
             return p;
         int quarter = getQuarterOf(p);
-        Circle circle = new Circle(this, between(this, p));
+        Circle circle = new Circle(this, getDistance(this, p));
 
 
         for (double precision = 0.0; precision <= 1.0; precision = precision + 0.01) {
             for (FloatPoint a : circle) {
                 if (!isEligible(p, a, quarter))
                     continue;
-                double side1 = between(a, p) / 2;
-                double side2 = between(circle.center, midPoint(a, p));
+                double side1 = getDistance(a, p) / 2;
+                double side2 = getDistance(circle.center, midPoint(a, p));
                 if (Math.abs(side1 / circle.radius - sine) <= precision && Math.abs(side2 / circle.radius - cosine) <= precision) {
                     return a;
                 }
@@ -103,7 +103,7 @@ public class Vertex extends FloatPoint {
     are changing when the point from this quarter rotates by x < 90 degrees
      */
     private int getQuarterOf(FloatPoint p) {
-        double constXY = between(this, p) * sin45;
+        double constXY = getDistance(this, p) * sin45;
         if (p.getX() >= this.getX() + constXY)
             return 1;
         if (p.getX() <= this.getX() - constXY)

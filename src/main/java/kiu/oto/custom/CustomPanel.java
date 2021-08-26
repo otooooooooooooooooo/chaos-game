@@ -31,6 +31,11 @@ public class CustomPanel extends CommonPanel implements MouseListener {
     }
 
     @Override
+    protected void getInputParameters() {
+
+    }
+
+    @Override
     protected Point getUsablePoint(FloatPoint p) {
         return new Point(round(p.getX()), round(p.getY()));
     }
@@ -42,6 +47,8 @@ public class CustomPanel extends CommonPanel implements MouseListener {
     Vertex.tostring
     vertex.tostring
      */
+
+    //TODO use json or xml
     @Override
     protected void export() { //TODO save '|' as a variable and reffer to it in buildFromTemplate method
         String directoryPath = getChosenExportDirectory();
@@ -58,7 +65,7 @@ public class CustomPanel extends CommonPanel implements MouseListener {
             Files.writeString(template, data);
             ImageIO.write(getImage(), "png", painting);
             minimize();
-            System.out.println("Project saved successfully");
+            output("Project saved successfully");
         } catch (Exception e) {
             e.printStackTrace();
         }

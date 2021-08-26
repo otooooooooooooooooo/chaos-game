@@ -1,31 +1,35 @@
 package kiu.oto.common;
 
-import kiu.oto.custom.CustomRun;
-import kiu.oto.ferns.FernsRun;
-import kiu.oto.polygons.PolygonsRun;
+import kiu.oto.custom.CustomPanel;
+
+import kiu.oto.ferns.FernsPanel;
+
+import kiu.oto.polygons.PolygonsPanel;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
 public class CommonRun {
 
+    public static final CommonFrame frame = new CommonFrame();
+
     public static void startProgram() {
         int program = getProgramChoice();
 
-        System.out.println("Choose background: ");
+        output("Choose background: ");
         BACKGROUND_COLOR = inputColor();
 
         setExportedImageResolution();
 
         if(program == 1)
-            FernsRun.run();
+            new FernsPanel();
         if(program == 2)
-            PolygonsRun.run();
+            new PolygonsPanel();
         if(program == 3)
-            CustomRun.run();
+            new CustomPanel();
     }
 
     private static int getProgramChoice() {
-        System.out.println("Choose simulation program:\n" +
+        output("Choose simulation program:\n" +
                 "1: Affine Transformation\n" +
                 "2: Chaos Game Polygons\n" +
                 "3: Chaos Game Advanced");
@@ -37,7 +41,7 @@ public class CommonRun {
     }
 
     private static void setExportedImageResolution() {
-        System.out.println("Choose exported image resolution: " +
+        output("Choose exported image resolution: " +
                 "1 - HD, 2 - FULL HD, 3 - 4K, 4 - 8K, 5 - 16K " +
                 "(this might effect program execution speed):");
         int resolutionChoice;
@@ -62,7 +66,7 @@ public class CommonRun {
         EXPORTED_IMAGE_WIDTH = (int) (HD_RESOLUTION_WIDTH * CHOICE_HD_RATIO);
         EXPORTED_IMAGE_HEIGHT = (int) (HD_RESOLUTION_HEIGHT * CHOICE_HD_RATIO);
         setDimensionRatios();
-        System.out.println("Resolution set to " + EXPORTED_IMAGE_WIDTH + "x" + EXPORTED_IMAGE_HEIGHT);
+        output("Resolution set to " + EXPORTED_IMAGE_WIDTH + "x" + EXPORTED_IMAGE_HEIGHT);
     }
 
 }

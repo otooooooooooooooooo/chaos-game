@@ -13,39 +13,64 @@ import java.nio.file.Paths;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
 
+import static kiu.oto.common.CommonRun.frame;
+
+/**
+ * Program GUI panel provides functionality to
+ * manage drawn points and interaction with user
+ */
 public abstract class CommonPanel extends JPanel implements KeyListener {
-    private CommonFrame frame;
     private final MyLabel label = new MyLabel();
 
-    //iterable point which makes image
+    /**
+     * Current point which is to be drawn/modified
+     */
     protected FloatPoint current;
 
 
+    /**
+     * Default constructor
+     */
     public CommonPanel() {
         setSize(PANEL_WIDTH, PANEL_HEIGHT);
         setBounds(0, 0, getWidth(), getHeight());
         setLayout(null);
-        setFocusable(true);
         addKeyListener(this);
         add(label);
-        updateImage();
         setModifier();
+        getInputParameters();
+        frame.setProgramPanel(this);
+        updateImage();
+        setFocusable(true);
     }
 
+    /**
+     *
+     * @return requested(high) resolution copy of displayed image
+     */
     protected BufferedImage getImage() {
         return label.getImage();
     }
 
-    /*sets the modifier which will be used to iterate current point
-    modifier should be set by means of static method FloatPoint.setPointModifier(modifier)
+    /** sets the modifier which will be used to iterate current point
+     * modifier should be set by means of static method FloatPoint.setPointModifier(modifier)
      */
     protected abstract void setModifier();
 
+    /**
+     * Gets specifications from user that is needed to run program
+     */
+    protected abstract void getInputParameters();
+
+    /**
+     * Displays lately painted points on window
+     */
     protected void updateImage() {
         revalidate();
         repaint();
     }
     //takes arguments in respect to displayed image. mainly used to draw with mouse
+    //TODO document
     protected void setAndDrawCurrentUnscaled(int x, int y) {
         setAndDrawCurrent(round(x * IMAGE_PANEL_WIDTH_RATIO), round(y * IMAGE_PANEL_HEIGHT_RATIO));
     }
@@ -70,7 +95,7 @@ public abstract class CommonPanel extends JPanel implements KeyListener {
     protected void paintNextPoint(int amount) {
         if(current == null) {
             minimize();
-            System.out.println("Current point is not initialized.");
+            output("Current point is not initialized.");
             return;
         }
         if(amount <= 0)
@@ -99,10 +124,6 @@ public abstract class CommonPanel extends JPanel implements KeyListener {
         label.paint(x, y, color);
     }
 
-    public void setFrame(CommonFrame frame) {
-        this.frame = frame;
-        updateImage();
-    }
     public void minimize(){
         frame.minimize();
     }
@@ -112,14 +133,14 @@ public abstract class CommonPanel extends JPanel implements KeyListener {
         String projectName = getProjectNameInput();
         try {
             ImageIO.write(getImage(), "png", Files.createFile(Paths.get("" + directoryPath + "/" + projectName + ".png")).toFile());
-            System.out.println("Project saved successfully");
+            output("Project saved successfully");
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
 
     }
 
-    protected  void doRelevantAction(KeyEvent e) {//TODO test
+    protected  void doRelevantAction(KeyEvent e) {
         switch (e.getKeyCode()) {
             case PAINT_NEXT ->
                     paintNextPoint(1);
@@ -133,12 +154,12 @@ public abstract class CommonPanel extends JPanel implements KeyListener {
                     minimize();
             case RESTART_PROGRAM ->
                     restartProgram();
-        };
+        }
     }
 
     protected String getProjectNameInput() {
         minimize();
-        System.out.println("Input project name:");
+        output("Input project name:");
         return inputString();
     }
 

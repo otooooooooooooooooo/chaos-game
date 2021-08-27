@@ -1,8 +1,12 @@
 package kiu.oto.common;
 
 
-import kiu.oto.common.inputs.ProgramChoice;
+import kiu.oto.common.inputs.MultiChoiceInputPanel;
+import kiu.oto.common.inputs.PopupDialogFrame;
+import kiu.oto.common.inputs.MultiChoiceHandler;
+import kiu.oto.common.inputs.enums.ProgramChoice;
 
+import kiu.oto.common.inputs.enums.ResolutionType;
 import kiu.oto.custom.CustomPanel;
 
 import kiu.oto.ferns.FernsPanel;
@@ -10,7 +14,7 @@ import kiu.oto.ferns.FernsPanel;
 import kiu.oto.polygons.PolygonsPanel;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
-import static kiu.oto.common.inputs.ProgramChoice.*;
+import static kiu.oto.custom.Resolution.getByType;
 
 public class CommonRun {
 
@@ -34,37 +38,21 @@ public class CommonRun {
     }
 
     private static ProgramChoice getProgramChoice() {
-    //    ProgramChoiceInput pri = new ProgramChoiceInput();
-        return POLYGONS;
+        return new PopupDialogFrame<>(
+                new MultiChoiceInputPanel<>(
+                        "Choose simulation", MultiChoiceHandler.programChoiceHandler)).getInput();
     }
 
     private static void setExportedImageResolution() {
-        output("Choose exported image resolution: " +
-                "1 - HD, 2 - FULL HD, 3 - 4K, 4 - 8K, 5 - 16K " +
-                "(this might effect program execution speed):");
-        int resolutionChoice;
+        ResolutionType resolutionType = new PopupDialogFrame<>(new MultiChoiceInputPanel<>(
+                "Choose exported image resolution",MultiChoiceHandler.resolutionTypeHandler)).getInput();
 
-        do {
-            resolutionChoice = inputInteger();
-        } while (resolutionChoice < 1 || resolutionChoice > 5);
+        double CHOICE_HD_RATIO = getByType(resolutionType);
 
-        double CHOICE_HD_RATIO;
-
-        if(resolutionChoice == 1)
-            CHOICE_HD_RATIO = 1;
-        else if (resolutionChoice == 2)
-            CHOICE_HD_RATIO = 1.5;
-        else if (resolutionChoice == 3)
-            CHOICE_HD_RATIO = 3;
-        else if (resolutionChoice == 4)
-            CHOICE_HD_RATIO = 6;
-        else
-            CHOICE_HD_RATIO = 12;
 
         EXPORTED_IMAGE_WIDTH = (int) (HD_RESOLUTION_WIDTH * CHOICE_HD_RATIO);
         EXPORTED_IMAGE_HEIGHT = (int) (HD_RESOLUTION_HEIGHT * CHOICE_HD_RATIO);
-        setDimensionRatios();
-        output("Resolution set to " + EXPORTED_IMAGE_WIDTH + "x" + EXPORTED_IMAGE_HEIGHT);
+        setDimensionRatios(CHOICE_HD_RATIO);
     }
 
 }

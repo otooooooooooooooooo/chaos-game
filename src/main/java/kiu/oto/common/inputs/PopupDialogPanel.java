@@ -1,6 +1,11 @@
 package kiu.oto.common.inputs;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +19,16 @@ public abstract class PopupDialogPanel<Input> extends JPanel {
 
     private final JButton button;
 
-    public PopupDialogPanel() {
+    @Setter
+    private PopupDialogFrame<Input> frame;
+
+    @Getter
+    private final String title;
+
+    public PopupDialogPanel(String title) {
+        this.title = title;
+        this.setBorder(new TitledBorder(new EtchedBorder()));
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setSize(POPUP_PANEL_DIMENSION);
         setBounds(0, 0, getWidth(), getHeight());
 
@@ -45,6 +59,7 @@ public abstract class PopupDialogPanel<Input> extends JPanel {
                 System.exit(1);
             }
         }
+        frame.dispose();
         return result;
     }
 

@@ -3,6 +3,10 @@ package kiu.oto.custom;
 import kiu.oto.common.AbstractModifier;
 import kiu.oto.common.FloatPoint;
 import kiu.oto.common.Vertex;
+import kiu.oto.common.inputs.MultiChoiceHandler;
+import kiu.oto.common.inputs.MultiChoiceInputPanel;
+import kiu.oto.common.inputs.PopupDialogFrame;
+import kiu.oto.common.inputs.enums.TemplateMode;
 import lombok.AllArgsConstructor;
 
 import javax.swing.*;
@@ -14,11 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
+import static kiu.oto.common.inputs.enums.TemplateMode.IMPORT;
+
 @AllArgsConstructor
 public class CustomModifier extends AbstractModifier {
-
-    private static final int TEMPLATE_MODE_IMPORT = 1;
-    private static final int TEMPLATE_MODE_MANUAL = 2;
 
     private static final ArrayList<Vertex> vertices = new ArrayList<>();
 
@@ -28,11 +31,11 @@ public class CustomModifier extends AbstractModifier {
     public void prepareSetup() {
         vertices.clear();
         //determines whether vertices are drawn manually or imported with template
-        int templateMode = getUserChoice();
-        if(templateMode == TEMPLATE_MODE_IMPORT)
+        TemplateMode templateMode = getUserChoice();
+        if(templateMode == IMPORT)
             importTemplate();
     }
-    
+    //TODO crashes when user presses 'cancel' and not choosing file
     private void importTemplate() {
         JFileChooser ch = new JFileChooser(); //TODO updated from final
         ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -70,17 +73,10 @@ public class CustomModifier extends AbstractModifier {
 
     }
 
-    private int getUserChoice() {
-        output(
-                "Input " + TEMPLATE_MODE_IMPORT +
-                " to import template. " +
-                "Input " + TEMPLATE_MODE_MANUAL +
-                " to continue manually:");
-        int userChoice;
-        do {
-            userChoice = inputInteger();
-        } while (userChoice != TEMPLATE_MODE_IMPORT && userChoice != TEMPLATE_MODE_MANUAL);
-        return userChoice;
+    private TemplateMode getUserChoice() {
+        return new PopupDialogFrame<>(new MultiChoiceInputPanel<>("Choose mode",
+                MultiChoiceHandler.templateModeHandler
+        )).getInput();
     }
 
     private Vertex getRandomVertex() {

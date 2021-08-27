@@ -1,24 +1,22 @@
 package kiu.oto.common.inputs;
 
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
 
 public class MultiChoiceInputPanel<Input> extends PopupDialogPanel<Input>{
     private final ButtonGroup buttonGroup = new ButtonGroup();
-    private final ClassCaster<ButtonModel, Input> caster;
+    private final MultiChoiceHandler<Input> handler;
 
+    public MultiChoiceInputPanel(String title, MultiChoiceHandler<Input> handler) {
+        super(title);
+        this.handler = handler;
+        String[] texts = handler.getTexts();
+        int length = texts.length;
 
-    public MultiChoiceInputPanel(String title, String[] choices, ClassCaster<ButtonModel, Input> caster) {
-        super();
-        this.caster = caster;
-        this.setBorder(new TitledBorder(new EtchedBorder(), title));
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        int length = choices.length;
+        String[] actionCommands = handler.getActionCommands();
         JRadioButton[] checkboxes = new JRadioButton[length];
         for(int i = 0; i < length; i++) {
-            checkboxes[i] = new JRadioButton(choices[i]);
-            checkboxes[i].setActionCommand(choices[i]);
+            checkboxes[i] = new JRadioButton(texts[i]);
+            checkboxes[i].setActionCommand(actionCommands[i]);
             buttonGroup.add(checkboxes[i]);
             add(checkboxes[i]);
         }
@@ -34,6 +32,6 @@ public class MultiChoiceInputPanel<Input> extends PopupDialogPanel<Input>{
 
     @Override
     protected Input getSelectedChoice() {
-        return caster.cast(buttonGroup.getSelection());
+        return handler.getType(buttonGroup.getSelection());
     }
 }

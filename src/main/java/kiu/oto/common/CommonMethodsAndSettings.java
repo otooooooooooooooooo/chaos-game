@@ -135,9 +135,9 @@ public enum CommonMethodsAndSettings {;
     private static final String FORMAT_ERROR = "Wrong format. Try again: ";
 
     //WONDER WHERE IT IS CALLED
-    public static void setDimensionRatios() {
-        IMAGE_PANEL_WIDTH_RATIO = EXPORTED_IMAGE_WIDTH / (double) PANEL_WIDTH;
-        IMAGE_PANEL_HEIGHT_RATIO = EXPORTED_IMAGE_HEIGHT / (double) PANEL_HEIGHT;
+    public static void setDimensionRatios(double ratio) {
+        IMAGE_PANEL_WIDTH_RATIO = ratio;
+        IMAGE_PANEL_HEIGHT_RATIO = ratio;
 
     }
 

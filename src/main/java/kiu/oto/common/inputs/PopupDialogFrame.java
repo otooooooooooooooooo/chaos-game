@@ -17,7 +17,9 @@ public class PopupDialogFrame<Input> extends JFrame {
 
 
         this.panel = panel;
+        setTitle(panel.getTitle());
         add(panel);
+        panel.setFrame(this);
         setVisible(true);
 
     }

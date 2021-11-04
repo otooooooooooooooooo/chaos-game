@@ -5,8 +5,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import static kiu.oto.common.CommonMethodsAndSettings.DOT_COLOR_1;
-
 //point class which saves floating x and y coordinates to maintain precision
 
 
@@ -22,7 +20,7 @@ public class FloatPoint {
     private Double y;
     @Getter
     @Setter
-    protected int color = DOT_COLOR_1;
+    protected int color = CommonMethodsAndSettings.getDOT_COLOR_1();
 
     @Getter
     private static AbstractModifier modifier;

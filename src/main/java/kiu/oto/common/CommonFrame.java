@@ -9,9 +9,6 @@ import static kiu.oto.common.CommonMethodsAndSettings.*;
  */
 public class CommonFrame extends JFrame {
 
-
-    private CommonPanel programPanel;
-
     public CommonFrame() {
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setResizable(false);
@@ -30,7 +27,6 @@ public class CommonFrame extends JFrame {
      */
     public void setProgramPanel(CommonPanel programPanel) {
         add(programPanel);
-        this.programPanel = programPanel;
     }
 
 
@@ -39,6 +35,10 @@ public class CommonFrame extends JFrame {
      */
     public void minimize() {
         setState(JFrame.ICONIFIED);
+    }
+
+    public void maximize() {
+        setState(JFrame.NORMAL);
     }
 
 }

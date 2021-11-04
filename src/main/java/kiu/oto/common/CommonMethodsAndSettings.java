@@ -1,5 +1,13 @@
 package kiu.oto.common;
 
+import kiu.oto.common.inputs.ColorInputPanel;
+import kiu.oto.common.inputs.PopupDialogFrame;
+import kiu.oto.common.inputs.PopupDialogPanel;
+import kiu.oto.common.inputs.StringInputPanel;
+import lombok.Getter;
+import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 import java.awt.*;
@@ -9,7 +17,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Random;
 
-//TODO pull settings from outer sources
+//TODO pull settings from outer sources, some fields can be private
 
 /**
  * enum for methods and settings that will be used in all packages of this project
@@ -25,17 +33,6 @@ public enum CommonMethodsAndSettings {;
 
 //visual settings
 
-    //TODO delete after GUI color chooser refactoring
-    public static final MyColor[] COLOR_CHOICES =
-            {
-                    new MyColor("RED", Color.red.getRGB()),
-                    new MyColor("GREEN", Color.green.getRGB()),
-                    new MyColor("BLUE", Color.BLUE.getRGB()),
-                    new MyColor("WHITE", Color.white.getRGB()),
-                    new MyColor("CYAN", Color.cyan.getRGB()),
-                    new MyColor("MAGENTA", Color.MAGENTA.getRGB())
-            };
-
 
 
     //PANEL SETTINGS
@@ -45,13 +42,24 @@ public enum CommonMethodsAndSettings {;
     public static final int FRAME_WIDTH = PANEL_WIDTH + 14;
     public static final int FRAME_HEIGHT = PANEL_HEIGHT + 37;
 
-    //TODO fix
-    public static final Dimension POPUP_LABEL_DIMENSION = new Dimension(PANEL_WIDTH /3, PANEL_HEIGHT/3);
+
+    public static final int POPUP_PANEL_DIMENSION_DOWNSCALE = 2;
+
+
+    public static final Dimension POPUP_PANEL_DIMENSION =
+            new Dimension(PANEL_WIDTH / POPUP_PANEL_DIMENSION_DOWNSCALE,
+                        PANEL_HEIGHT / POPUP_PANEL_DIMENSION_DOWNSCALE);
+    public static final Dimension POPUP_FRAME_DIMENSION =
+            new Dimension(POPUP_PANEL_DIMENSION.width + 14,
+                    POPUP_PANEL_DIMENSION.height + 37);
 
     //TODO this is bs needs refactor
     //all colors in project are saved as rgb values
     public static int BACKGROUND_COLOR = Color.black.getRGB();
-    public static final int DOT_COLOR_1 = Color.cyan.getRGB();
+
+    @Setter
+    @Getter
+    private static int DOT_COLOR_1 = Color.cyan.getRGB();
 
     /**
      * Random object to be used in modifier classes
@@ -89,9 +97,6 @@ public enum CommonMethodsAndSettings {;
 
 //methods used commonly in all projects
 
-    //TODO will delete after ya know...
-    public static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
     /**
      *
      * @param d number to round
@@ -127,9 +132,9 @@ public enum CommonMethodsAndSettings {;
     private static final String FORMAT_ERROR = "Wrong format. Try again: ";
 
     //WONDER WHERE IT IS CALLED
-    public static void setDimensionRatios() {
-        IMAGE_PANEL_WIDTH_RATIO = EXPORTED_IMAGE_WIDTH / (double) PANEL_WIDTH;
-        IMAGE_PANEL_HEIGHT_RATIO = EXPORTED_IMAGE_HEIGHT / (double) PANEL_HEIGHT;
+    public static void setDimensionRatios(double ratio) {
+        IMAGE_PANEL_WIDTH_RATIO = ratio;
+        IMAGE_PANEL_HEIGHT_RATIO = ratio;
 
     }
 
@@ -137,12 +142,12 @@ public enum CommonMethodsAndSettings {;
      *
      * @return integer choice from user
      */
-    public static int inputInteger() {
+    public static int inputInteger(String text, Integer defaultValue) {
         try {
-            return Integer.parseInt(inputString());
+            return Integer.parseInt(inputString(text, defaultValue.toString()));
         } catch (NumberFormatException e) {
             System.out.println(FORMAT_ERROR);
-            return inputInteger();
+            return inputInteger(text, defaultValue);
         }
     }
 
@@ -150,12 +155,12 @@ public enum CommonMethodsAndSettings {;
      *
      * @return double choice from user
      */
-    public static double inputDouble() {
+    public static double inputDouble(String text, @NotNull Double defaultValue) {
         try {
-            return Double.parseDouble(inputString());
+            return Double.parseDouble(inputString(text, defaultValue.toString()));
         } catch (NumberFormatException e) {
             System.out.println(FORMAT_ERROR);
-            return inputDouble();
+            return inputDouble(text, defaultValue);
         }
     }
 
@@ -163,26 +168,16 @@ public enum CommonMethodsAndSettings {;
      *
      * @return string from user
      */
-    public static String inputString(){
-        try {
-            return br.readLine();
-        } catch (Exception e) {
-            System.out.println(FORMAT_ERROR);
-            return inputString();
-        }
+    public static String inputString(String text, String defaultValue){
+        return new PopupDialogFrame<>(new StringInputPanel(text, defaultValue)).getInput();
     }
-
-    //TODO color chooser GUI
 
     /**
      *
      * @return color rgb choice from user
      */
-    public static int inputColor() {
-        //outputs all color choices
-        Arrays.stream(COLOR_CHOICES).forEach(x -> System.out.println(x.toString()));
-        output("Choose color or input manually: ");
-        return inputInteger();
+    public static int inputColor(String title) {
+        return new PopupDialogFrame<>(new ColorInputPanel(title)).getInput().getRGB();
     }
 
     /**

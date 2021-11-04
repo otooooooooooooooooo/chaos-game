@@ -3,6 +3,10 @@ package kiu.oto.custom;
 import kiu.oto.common.AbstractModifier;
 import kiu.oto.common.FloatPoint;
 import kiu.oto.common.Vertex;
+import kiu.oto.common.inputs.MultiChoiceHandler;
+import kiu.oto.common.inputs.MultiChoiceInputPanel;
+import kiu.oto.common.inputs.PopupDialogFrame;
+import kiu.oto.common.inputs.enums.TemplateMode;
 import lombok.AllArgsConstructor;
 
 import javax.swing.*;
@@ -14,11 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static kiu.oto.common.CommonMethodsAndSettings.*;
+import static kiu.oto.common.inputs.enums.TemplateMode.IMPORT;
+
 @AllArgsConstructor
 public class CustomModifier extends AbstractModifier {
-
-    private static final int TEMPLATE_MODE_IMPORT = 1;
-    private static final int TEMPLATE_MODE_MANUAL = 2;
 
     private static final ArrayList<Vertex> vertices = new ArrayList<>();
 
@@ -28,11 +31,11 @@ public class CustomModifier extends AbstractModifier {
     public void prepareSetup() {
         vertices.clear();
         //determines whether vertices are drawn manually or imported with template
-        int templateMode = getUserChoice();
-        if(templateMode == TEMPLATE_MODE_IMPORT)
+        TemplateMode templateMode = getUserChoice();
+        if(templateMode == IMPORT)
             importTemplate();
     }
-    
+    //TODO crashes when user presses 'cancel' and not choosing file
     private void importTemplate() {
         JFileChooser ch = new JFileChooser(); //TODO updated from final
         ch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -42,12 +45,11 @@ public class CustomModifier extends AbstractModifier {
         buildFromTemplate(template);
     }
 
-    private void buildFromTemplate(File template) {//TODO save '|' in a variable and refer to it in export method
+    //TODO json format template import/export
+    private void buildFromTemplate(File template) {
         List<String>  content;
-
         try {
             content = Files.readAllLines(template.toPath());
-
             String[] dimensions = content.remove(0).split("\\|");
             double widthRatio = EXPORTED_IMAGE_WIDTH / (double) Integer.parseInt(dimensions[0]);
             double heightRatio = EXPORTED_IMAGE_HEIGHT / (double) Integer.parseInt(dimensions[1]);
@@ -70,17 +72,10 @@ public class CustomModifier extends AbstractModifier {
 
     }
 
-    private int getUserChoice() {
-        System.out.println(
-                "Input " + TEMPLATE_MODE_IMPORT +
-                " to import template. " +
-                "Input " + TEMPLATE_MODE_MANUAL +
-                " to continue manually:");
-        int userChoice;
-        do {
-            userChoice = inputInteger();
-        } while (userChoice != TEMPLATE_MODE_IMPORT && userChoice != TEMPLATE_MODE_MANUAL);
-        return userChoice;
+    private TemplateMode getUserChoice() {
+        return new PopupDialogFrame<>(new MultiChoiceInputPanel<>("Choose mode",
+                MultiChoiceHandler.templateModeHandler()
+        )).getInput();
     }
 
     private Vertex getRandomVertex() {
@@ -113,7 +108,7 @@ public class CustomModifier extends AbstractModifier {
         double compressionRatio = inputCompressionRatio();
         double rotationDegree = inputRotationDegree();
         boolean clockwise = inputRotationDirection();
-        int color = inputColor();
+        int color = inputColor("Choose vertex color");
         int quantity = inputQuantity();
 
         Vertex createdVertex = new Vertex(x, y, compressionRatio, rotationDegree, clockwise, color, quantity);
@@ -127,32 +122,27 @@ public class CustomModifier extends AbstractModifier {
     }
 
     private double inputCompressionRatio() {
-        System.out.println("Input compression ratio (double):");
         double input;
         do {
-            input = inputDouble();
+            input = inputDouble("Input compression ratio (nonzero)", 2.0);
         } while (input == 0);
         return input;
     }
 
     private double inputRotationDegree() {
-        System.out.println("Input rotation degree (double):");
-        return inputDouble();
+        return inputDouble("Input rotation degree", 0.0);
     }
 
-    //returns true if clockwise, returns false if counter clockwise
+    //returns true if clockwise, returns false if counterclockwise
     private boolean inputRotationDirection() {
-        System.out.println("Choose rotation direction (1 for clockwise, 2 for counter clockwise):");
-        int choice;
-        do {
-            choice = inputInteger();
-        } while(choice != 1 && choice != 2);
-
-        return choice == 1;
+        return new PopupDialogFrame<>
+                (new MultiChoiceInputPanel<>
+                        ("Choose rotation direction",
+                                MultiChoiceHandler.rotationDirectionHandler())).getInput()
+                .isClockwise();
     }
 
     private int inputQuantity() {
-        System.out.println("Input vertex quantity: ");
-        return inputInteger();
+        return inputInteger("Input vertex quantity", 1);
     }
 }

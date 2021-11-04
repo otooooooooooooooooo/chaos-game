@@ -1,5 +1,13 @@
 package kiu.oto.common;
 
+import kiu.oto.common.inputs.ColorInputPanel;
+import kiu.oto.common.inputs.PopupDialogFrame;
+import kiu.oto.common.inputs.PopupDialogPanel;
+import kiu.oto.common.inputs.StringInputPanel;
+import lombok.Getter;
+import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
+
 import javax.swing.*;
 import javax.swing.colorchooser.AbstractColorChooserPanel;
 import java.awt.*;
@@ -25,17 +33,6 @@ public enum CommonMethodsAndSettings {;
 
 //visual settings
 
-    //TODO delete after GUI color chooser refactoring
-    public static final MyColor[] COLOR_CHOICES =
-            {
-                    new MyColor("RED", Color.red.getRGB()),
-                    new MyColor("GREEN", Color.green.getRGB()),
-                    new MyColor("BLUE", Color.BLUE.getRGB()),
-                    new MyColor("WHITE", Color.white.getRGB()),
-                    new MyColor("CYAN", Color.cyan.getRGB()),
-                    new MyColor("MAGENTA", Color.MAGENTA.getRGB())
-            };
-
 
 
     //PANEL SETTINGS
@@ -59,7 +56,10 @@ public enum CommonMethodsAndSettings {;
     //TODO this is bs needs refactor
     //all colors in project are saved as rgb values
     public static int BACKGROUND_COLOR = Color.black.getRGB();
-    public static final int DOT_COLOR_1 = Color.cyan.getRGB();
+
+    @Setter
+    @Getter
+    private static int DOT_COLOR_1 = Color.cyan.getRGB();
 
     /**
      * Random object to be used in modifier classes
@@ -96,9 +96,6 @@ public enum CommonMethodsAndSettings {;
 
 
 //methods used commonly in all projects
-
-    //TODO will delete after ya know...
-    public static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     /**
      *
@@ -145,12 +142,12 @@ public enum CommonMethodsAndSettings {;
      *
      * @return integer choice from user
      */
-    public static int inputInteger() {
+    public static int inputInteger(String text, Integer defaultValue) {
         try {
-            return Integer.parseInt(inputString());
+            return Integer.parseInt(inputString(text, defaultValue.toString()));
         } catch (NumberFormatException e) {
             System.out.println(FORMAT_ERROR);
-            return inputInteger();
+            return inputInteger(text, defaultValue);
         }
     }
 
@@ -158,12 +155,12 @@ public enum CommonMethodsAndSettings {;
      *
      * @return double choice from user
      */
-    public static double inputDouble() {
+    public static double inputDouble(String text, @NotNull Double defaultValue) {
         try {
-            return Double.parseDouble(inputString());
+            return Double.parseDouble(inputString(text, defaultValue.toString()));
         } catch (NumberFormatException e) {
             System.out.println(FORMAT_ERROR);
-            return inputDouble();
+            return inputDouble(text, defaultValue);
         }
     }
 
@@ -171,26 +168,16 @@ public enum CommonMethodsAndSettings {;
      *
      * @return string from user
      */
-    public static String inputString(){
-        try {
-            return br.readLine();
-        } catch (Exception e) {
-            System.out.println(FORMAT_ERROR);
-            return inputString();
-        }
+    public static String inputString(String text, String defaultValue){
+        return new PopupDialogFrame<>(new StringInputPanel(text, defaultValue)).getInput();
     }
-
-    //TODO color chooser GUI
 
     /**
      *
      * @return color rgb choice from user
      */
-    public static int inputColor() {
-        //outputs all color choices
-        Arrays.stream(COLOR_CHOICES).forEach(x -> System.out.println(x.toString()));
-        output("Choose color or input manually: ");
-        return inputInteger();
+    public static int inputColor(String title) {
+        return new PopupDialogFrame<>(new ColorInputPanel(title)).getInput().getRGB();
     }
 
     /**

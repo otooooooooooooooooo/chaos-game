@@ -21,13 +21,8 @@ public class MultiChoiceInputPanel<Input> extends PopupDialogPanel<Input>{
             add(checkboxes[i]);
         }
         buttonGroup.setSelected(checkboxes[0].getModel(), true);
-
-
-
-
         revalidate();
         repaint();
-
     }
 
     @Override

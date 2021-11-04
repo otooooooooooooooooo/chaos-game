@@ -11,7 +11,8 @@ public class IntegerInputPanel extends PopupDialogPanel<Integer> {
         setLayout(null);
         spinner = new JSpinner(new SpinnerNumberModel(value, minimum, maximum, 1));
         spinner.setSize(getWidth() / 10, getHeight() / 10);
-        spinner.setBounds((getWidth() - spinner.getWidth())/2, (getHeight() - spinner.getHeight()) / 2, spinner.getWidth(), spinner.getHeight());
+        spinner.setBounds((getWidth() - spinner.getWidth())/2, (getHeight() - spinner.getHeight()) / 2,
+                spinner.getWidth(), spinner.getHeight());
         add(spinner);
         revalidate();
         repaint();

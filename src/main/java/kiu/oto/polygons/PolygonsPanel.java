@@ -43,7 +43,7 @@ public class PolygonsPanel extends CommonPanel {
 
     private void setRules() {
         PolygonsModifier.setRuleName(new PopupDialogFrame<>(
-                new MultiChoiceInputPanel<>("Choose rules", MultiChoiceHandler.ruleSetChoiceHandler)
+                new MultiChoiceInputPanel<>("Choose rules", MultiChoiceHandler.ruleSetChoiceHandler())
         ).getInput());
 
 

@@ -37,4 +37,8 @@ public class CommonFrame extends JFrame {
         setState(JFrame.ICONIFIED);
     }
 
+    public void maximize() {
+        setState(JFrame.NORMAL);
+    }
+
 }

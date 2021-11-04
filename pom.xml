@@ -9,8 +9,8 @@
   <version>1.0</version>
 
   <name>chaos-game</name>
-  <!-- FIXME change it to the project's repository link -->
-  <url>http://www.example.com</url>
+
+  <url>https://github.com/otooooooooooooooooo/chaos-game</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,7 +62,6 @@
         </plugin>
 
         <plugin>
-          <!--FIXME plugin maybe redundant -->
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
         </plugin>
@@ -94,24 +93,21 @@
                 <addClasspath>true</addClasspath>
                 <classpathPrefix>libs/</classpathPrefix>
                 <mainClass>
-                  kiu.oto.Main <!--FIXME set main class -->
+                  kiu.oto.Main
                 </mainClass>
               </manifest>
             </archive>
           </configuration>
         </plugin>
-
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>14</source>
+            <target>14</target>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>14</source>
-          <target>14</target>
-        </configuration>
-      </plugin>
-    </plugins>
   </build>
 </project>

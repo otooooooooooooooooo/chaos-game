@@ -5,6 +5,7 @@ import kiu.oto.common.CommonPanel;
 import kiu.oto.common.Vertex;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -48,9 +49,8 @@ public class CustomPanel extends CommonPanel implements MouseListener {
     vertex.tostring
      */
 
-    //TODO use json or xml
     @Override
-    protected void export() { //TODO save '|' as a variable and reffer to it in buildFromTemplate method
+    protected void export() {
         String directoryPath = getChosenExportDirectory();
         String projectName = getProjectNameInput();
         StringBuilder data = new StringBuilder();
@@ -78,7 +78,6 @@ public class CustomPanel extends CommonPanel implements MouseListener {
     @Override
     protected void doRelevantAction(MouseEvent e) {
         if(e.getButton() == CustomSettingsAndMethods.CREATE_VERTEX) {
-            minimize();
             ((CustomModifier) FloatPoint.getModifier()).createVertex(e);
         }
         else if (e.getButton() == CustomSettingsAndMethods.PAINT_CURRENT)

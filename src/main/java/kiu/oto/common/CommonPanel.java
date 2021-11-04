@@ -1,5 +1,7 @@
 package kiu.oto.common;
 
+import lombok.Getter;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -125,6 +127,12 @@ public abstract class CommonPanel extends JPanel implements KeyListener {
         label.paint(x, y, color);
     }
 
+    @Deprecated
+    public void changeBackground(int color) {
+        BACKGROUND_COLOR = color; //TODO setter
+        label.getMyImage().setBackground();
+    }
+
     public void minimize(){
         frame.minimize();
     }
@@ -159,12 +167,14 @@ public abstract class CommonPanel extends JPanel implements KeyListener {
     }
 
     protected String getProjectNameInput() {
-        minimize();
-        output("Input project name:");
-        return inputString();
+        return inputString("Input project name", "newProject");
     }
 
-
+    //got no idea how it works
+    public void gainFocus() {
+        frame.minimize();
+        frame.maximize();
+    }
 
     private void restartProgram() {
         frame.dispose();
@@ -192,15 +202,16 @@ public abstract class CommonPanel extends JPanel implements KeyListener {
 }
 
 class MyLabel extends JLabel {
-    private final MyImage image = new MyImage();
+    @Getter
+    private final MyImage myImage = new MyImage();
     public MyLabel() {
         setSize(PANEL_WIDTH, PANEL_HEIGHT);
         setBounds(0, 0, getWidth(), getHeight());
-        setIcon(new ImageIcon(image));
+        setIcon(new ImageIcon(myImage));
     }
-    public BufferedImage getImage() { return image.getHighResolutionImage();}
+    public BufferedImage getImage() { return myImage.getHighResolutionImage();}
     public void paint(int x, int y, int color) {
-        image.setRGB(x, y, color);
+        myImage.setRGB(x, y, color);
     }
 }
 
@@ -231,7 +242,7 @@ class MyImage extends BufferedImage {
         } catch (ArrayIndexOutOfBoundsException ignored) {}
     }
 
-    private void setBackground() {
+    public void setBackground() {
         for(int i = 0; i < EXPORTED_IMAGE_WIDTH; i++)
             for(int j = 0; j < EXPORTED_IMAGE_HEIGHT; j++)
                 setRGB(i, j, BACKGROUND_COLOR);

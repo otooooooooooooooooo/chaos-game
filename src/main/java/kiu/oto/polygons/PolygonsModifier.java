@@ -1,6 +1,7 @@
 package kiu.oto.polygons;
 
 import kiu.oto.common.AbstractModifier;
+import kiu.oto.common.CommonMethodsAndSettings;
 import kiu.oto.common.FloatPoint;
 import kiu.oto.common.Vertex;
 import kiu.oto.common.inputs.enums.RuleName;
@@ -80,12 +81,12 @@ public class PolygonsModifier extends AbstractModifier {
     }
 
     private void loadCorners() {
-        Vertex center = new Vertex(EXPORTED_IMAGE_WIDTH / 2.0, EXPORTED_IMAGE_HEIGHT / 2.0, 1.0, 360 / (double) polygonCornerCount, true, DOT_COLOR_1, 1);
+        Vertex center = new Vertex(EXPORTED_IMAGE_WIDTH / 2.0, EXPORTED_IMAGE_HEIGHT / 2.0, 1.0, 360 / (double) polygonCornerCount, true, getDOT_COLOR_1(), 1);
 
         FloatPoint nextPoint = new FloatPoint(EXPORTED_IMAGE_WIDTH / 2.0, GAP_FROM_BORDER_TO_CORNER);
         for(int i = 0; i < polygonCornerCount; i++) {
             nextPoint = center.next(nextPoint);
-            Vertex next = new Vertex(nextPoint.getX(), nextPoint.getY(), 2.0, 0.0, true, DOT_COLOR_1, 1);
+            Vertex next = new Vertex(nextPoint.getX(), nextPoint.getY(), 2.0, 0.0, true, getDOT_COLOR_1(), 1);
             next.setColor(RANDOM.nextInt());
             corners.add(next);
         }
